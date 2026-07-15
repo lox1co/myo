@@ -1,0 +1,238 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+// We can define categories and products in frontmatter for cleaner layout
+const categories = [
+  {
+    name: 'Sofás Modulares',
+    count: '12 modelos',
+    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80',
+    link: '/collection/salon'
+  },
+  {
+    name: 'Mesas & Comedor',
+    count: '8 modelos',
+    image: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=600&q=80',
+    link: '/collection/comedor'
+  },
+  {
+    name: 'Sillones & Butacas',
+    count: '15 modelos',
+    image: 'https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?auto=format&fit=crop&w=600&q=80',
+    link: '/collection/salon'
+  },
+  {
+    name: 'Lámparas & Decoración',
+    count: '24 objetos',
+    image: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80',
+    link: '/collection/iluminacion'
+  }
+];
+
+const featuredProducts = [
+  {
+    id: 'nordic-sofa',
+    name: 'Sofá Modular Nørde',
+    category: 'Sofás',
+    price: 'S/ 4,299',
+    image: '/images/sofa_base.png',
+    tag: 'Personalizable',
+    link: '/product/nordic-sofa'
+  },
+  {
+    id: 'ottoman-set',
+    name: 'Juego de Banquetes Bergen',
+    category: 'Juegos',
+    price: 'S/ 3,199',
+    image: '/images/benches_base.png',
+    tag: 'Personalizable',
+    link: '/product/ottoman-set'
+  }
+];
+---
+
+<Layout title="Inicio">
+  {/* Hero Banner Section */}
+  <section class="relative bg-[#f5f2eb] pt-8 pb-16 md:py-24 overflow-hidden border-b border-[#ecece8]">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Left Column: Text Content */}
+      <div class="space-y-6 z-10 max-w-xl">
+        <span class="text-xs font-bold text-[#cfa163] uppercase tracking-widest block animate-fade-in">
+          Colección Escandinava 2026
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-[#1f2022] leading-[1.1]">
+          Muebles a medida para espacios <span class="font-serif italic text-[#cfa163] font-normal">conscientes</span>.
+        </h1>
+        <p class="text-sm md:text-base text-[#5c5c56] leading-relaxed">
+          Diseñamos sofás modulares y muebles funcionales adaptados a tu vida. Nuestra filosofía combina maderas sostenibles certificadas, tapizados premium y ergonomía activa para un confort duradero.
+        </p>
+        <div class="flex flex-wrap gap-4 pt-2">
+          <a href="/myo/product/nordic-sofa" class="inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider text-white bg-[#1f2022] hover:bg-[#cfa163] px-7 py-3.5 rounded-full transition-all duration-300 shadow-md">
+            Personalizar Sofá Nørde
+          </a>
+          <a href="#categorias" class="inline-flex items-center justify-center text-xs font-bold uppercase tracking-wider text-[#1f2022] bg-white border border-[#ecece8] hover:border-[#1f2022] px-7 py-3.5 rounded-full transition-all duration-300">
+            Explorar Colecciones
+          </a>
+        </div>
+      </div>
+
+      {/* Right Column: Hero Image (Generated) */}
+      <div class="relative w-full aspect-[4/3] lg:aspect-square xl:aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border border-[#ecece8] group">
+        <img 
+          src="/myo/images/hero_living_room.png" 
+          alt="Sala de estar minimalista moderna Muebles M&O" 
+          class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  </section>
+
+  {/* Categories Section */}
+  <section id="categorias" class="py-16 md:py-24 max-w-7xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div class="space-y-2">
+        <span class="text-xs font-bold text-[#cfa163] uppercase tracking-widest block">Categorías</span>
+        <h2 class="text-3xl font-bold tracking-tight text-[#1f2022]">Explora por Colección</h2>
+      </div>
+      <p class="text-sm text-[#5c5c56] max-w-sm mt-3 md:mt-0">
+        Cada categoría representa nuestra visión de simplicidad, calidez y pureza de líneas del estilo escandinavo moderno.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {categories.map((cat) => (
+        <a href={cat.link} class="group block relative h-96 rounded-2xl overflow-hidden border border-[#ecece8] shadow-sm hover:shadow-lg transition-all duration-300">
+          <img 
+            src={cat.image} 
+            alt={cat.name} 
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6 text-white flex flex-col justify-end">
+            <span class="text-xs text-[#cfa163] uppercase font-bold tracking-wider mb-1">{cat.count}</span>
+            <h3 class="text-lg font-bold tracking-tight group-hover:underline">{cat.name}</h3>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  {/* Color Customizer Intro Banner (Interactive Feature Callout) */}
+  <section class="bg-[#f0ece3] py-16 border-y border-[#ecece8]">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12">
+      <div class="lg:w-1/2 space-y-5">
+        <span class="text-xs font-bold text-white bg-[#cfa163] px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+          Exclusivo M&O
+        </span>
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1f2022]">
+          Galería de Acabados Reales: Fotos 100% de Stock.
+        </h2>
+        <p class="text-sm text-[#5c5c56] leading-relaxed">
+          Queremos que veas tu mueble tal y como llegará a tu hogar. En lugar de simulaciones virtuales imprecisas, fotografiamos cada modelo de nuestro taller tapizado con los diferentes hilados y colores de stock reales. Selecciona el tono y explora los pliegues y costuras fotorrealistas.
+        </p>
+        <div>
+          <a href="/myo/collection/salon" class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-white bg-[#1f2022] hover:bg-[#cfa163] px-6 py-3 rounded-full transition-all duration-300">
+            Explorar Colección de Salón
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="lg:w-1/2 grid grid-cols-2 gap-4">
+        <div class="bg-white/80 p-6 rounded-2xl border border-[#ecece8] space-y-2">
+          <div class="w-8 h-8 rounded-full bg-[#e3dac9] border border-[#d2c9b8]"></div>
+          <h4 class="font-bold text-sm text-[#1f2022]">Estética Neutra</h4>
+          <p class="text-xs text-[#6b6b64]">Tonos tierra, beige y grises inspirados en la naturaleza escandinava.</p>
+        </div>
+        <div class="bg-white/80 p-6 rounded-2xl border border-[#ecece8] space-y-2">
+          <div class="w-8 h-8 rounded-full bg-[#9caf9b] border border-[#899c88]"></div>
+          <h4 class="font-bold text-sm text-[#1f2022]">Verde Orgánico</h4>
+          <p class="text-xs text-[#6b6b64]">Fibras de lino salvia que aportan serenidad a tus estancias.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Featured Products Section */}
+  <section class="py-16 md:py-24 max-w-7xl mx-auto px-6">
+    <div class="text-center max-w-lg mx-auto mb-16 space-y-3">
+      <span class="text-xs font-bold text-[#cfa163] uppercase tracking-widest block">Productos Destacados</span>
+      <h2 class="text-3xl font-bold tracking-tight text-[#1f2022]">Diseño Atemporal en Tendencia</h2>
+      <p class="text-sm text-[#5c5c56]">
+        Piezas icónicas que transforman salas y estudios en espacios de relajación y productividad consciente.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {featuredProducts.map((prod) => (
+        <div class="group relative flex flex-col justify-between">
+          <div>
+            <div class="relative w-full aspect-square rounded-2xl overflow-hidden border border-[#ecece8] bg-white mb-4 group shadow-sm hover:shadow-md transition-shadow">
+              <img 
+                src={"/myo" + prod.image} 
+                alt={prod.name} 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              {prod.tag && (
+                <span class="absolute top-4 left-4 bg-white/95 text-[#1f2022] text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                  {prod.tag}
+                </span>
+              )}
+            </div>
+            <div class="space-y-1">
+              <span class="text-xs font-semibold text-[#8b8b83] uppercase tracking-wider">{prod.category}</span>
+              <h3 class="text-base font-bold text-[#1f2022] tracking-tight group-hover:text-[#cfa163] transition-colors">
+                <a href={prod.link}>{prod.name}</a>
+              </h3>
+            </div>
+          </div>
+          <div class="flex items-center justify-between mt-3 pt-3 border-t border-[#ecece8]">
+            <span class="text-sm font-bold text-[#1f2022]">{prod.price}</span>
+            <a href={prod.link} class="text-xs font-bold text-[#cfa163] uppercase tracking-wider hover:text-[#1f2022] transition-colors">
+              {prod.id === 'nordic-sofa' ? 'Personalizar' : 'Ver Detalles'} &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  {/* Philosophy Section */}
+  <section id="sobre-nosotros" class="py-16 md:py-24 bg-[#1f2022] text-[#fafaf9]">
+    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-12">
+      <div class="space-y-4 lg:col-span-1">
+        <span class="text-xs font-bold text-[#cfa163] uppercase tracking-widest block">Nuestra Filosofía</span>
+        <h2 class="text-3xl font-bold tracking-tight text-white">Simplicidad Escandinava en Cada Píxel y Fibra</h2>
+        <p class="text-sm text-[#9ca3af] leading-relaxed">
+          En Muebles M&O no hacemos producción en masa. Creemos en la fabricación consciente y la integración digital perfecta para empoderar al cliente en su elección estética.
+        </p>
+      </div>
+
+      <div class="lg:col-span-2 grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div class="space-y-2.5">
+          <span class="text-xl font-bold text-[#cfa163] font-serif">01</span>
+          <h4 class="font-bold text-base text-white">Madera FSC</h4>
+          <p class="text-xs text-[#9ca3af] leading-relaxed">
+            Estructuras internas de pino y roble extraídos únicamente de bosques con gestión medioambiental estricta.
+          </p>
+        </div>
+        <div class="space-y-2.5">
+          <span class="text-xl font-bold text-[#cfa163] font-serif">02</span>
+          <h4 class="font-bold text-base text-white">Ergonomía Activa</h4>
+          <p class="text-xs text-[#9ca3af] leading-relaxed">
+            Ángulos de reclinado del respaldo y espumas de densidad inteligente para una postura relajada y saludable.
+          </p>
+        </div>
+        <div class="space-y-2.5">
+          <span class="text-xl font-bold text-[#cfa163] font-serif">03</span>
+          <h4 class="font-bold text-base text-white">Tapizados a Medida</h4>
+          <p class="text-xs text-[#9ca3af] leading-relaxed">
+            Telas resistentes de bouclé, lino belga y lana reciclada que garantizan una larga durabilidad al desgaste.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

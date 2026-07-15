@@ -1,0 +1,236 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Muebles M&O - Tienda de muebles de diseño moderno y minimalista escandinavo." } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title} | Muebles M&O</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content={`${title} | Muebles M&O`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #fafaf9;
+        color: #1f2022;
+      }
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Outfit', sans-serif;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen flex flex-col antialiased selection:bg-[#cfa163]/25 selection:text-[#1f2022]">
+    <!-- Elegant Sticky Header -->
+    <header class="sticky top-0 z-50 bg-[#fafaf9]/85 backdrop-blur-md border-b border-[#ecece8] transition-all duration-300">
+      <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <!-- Brand Logo -->
+        <a href="/myo" class="flex items-center gap-2 group">
+          <span class="text-xl sm:text-2xl font-bold tracking-tight text-[#1f2022] font-serif transition-colors duration-300 group-hover:text-[#cfa163]">
+            Muebles <span class="font-light italic text-[#cfa163] group-hover:text-[#1f2022]">M&O</span>
+          </span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#5c5c56]">
+          <a href="/myo" class="hover:text-[#cfa163] transition-colors duration-200">Inicio</a>
+          <a href="/myo/#categorias" class="hover:text-[#cfa163] transition-colors duration-200">Colecciones</a>
+          <a href="/myo/#sobre-nosotros" class="hover:text-[#cfa163] transition-colors duration-200">Sobre M&O</a>
+        </nav>
+
+        <!-- Action Buttons (CTA / Hamburger) -->
+        <div class="flex items-center gap-2 sm:gap-4">
+          <a href="https://wa.me/51907242330" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 justify-center text-xs font-bold uppercase tracking-wider text-white bg-[#25d366] hover:bg-[#20ba5a] px-5 py-2.5 rounded-full transition-all duration-300 shadow-sm">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.216 3.077.149.2 2.094 3.197 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Escríbenos
+          </a>
+
+          <!-- Mobile Menu Button (Hamburger) -->
+          <button id="mobile-menu-btn" class="md:hidden p-2 text-[#1f2022] hover:bg-black/5 rounded-full transition-colors duration-200 focus:outline-none" aria-label="Abrir menú">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Mobile Navigation Drawer Overlay -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 bg-black/40 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+      <!-- Drawer Content -->
+      <div class="fixed top-0 right-0 bottom-0 w-80 max-w-full bg-[#fafaf9] shadow-2xl flex flex-col translate-x-full transition-transform duration-300" id="mobile-drawer-content">
+        <!-- Close button header -->
+        <div class="h-20 px-6 flex items-center justify-between border-b border-[#ecece8]">
+          <span class="text-xl font-bold tracking-tight text-[#1f2022] font-serif">
+            Muebles <span class="font-light italic text-[#cfa163]">M&O</span>
+          </span>
+          <button id="mobile-menu-close" class="p-2 text-[#1f2022] hover:bg-black/5 rounded-full transition-colors duration-200 focus:outline-none" aria-label="Cerrar menú">
+            <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Links list -->
+        <nav class="flex-grow py-8 px-6 flex flex-col gap-6 text-lg font-medium text-[#5c5c56]">
+          <a href="/myo" class="hover:text-[#cfa163] transition-colors py-2 border-b border-[#ecece8]/50">Inicio</a>
+          <a href="/myo/#categorias" class="hover:text-[#cfa163] transition-colors py-2 border-b border-[#ecece8]/50">Colecciones</a>
+          <a href="/myo/#sobre-nosotros" class="hover:text-[#cfa163] transition-colors py-2">Sobre M&O</a>
+          
+          <a href="https://wa.me/51907242330" target="_blank" rel="noopener noreferrer" class="mt-8 inline-flex items-center gap-1.5 justify-center text-xs font-bold uppercase tracking-wider text-white bg-[#25d366] hover:bg-[#20ba5a] py-3.5 rounded-full transition-all duration-300 shadow-md">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.216 3.077.149.2 2.094 3.197 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            Escríbenos por WhatsApp
+          </a>
+        </nav>
+        
+        <!-- Drawer Footer -->
+        <div class="p-6 border-t border-[#ecece8] text-xs text-[#8b8b83]">
+          <p>&copy; {new Date().getFullYear()} Muebles M&O. Diseño Escandinavo.</p>
+        </div>
+      </div>
+    </div>
+
+    {/* Main Content Area */}
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    {/* Premium Minimalist Footer */}
+    <footer class="bg-[#1f2022] text-[#ecece8] pt-16 pb-12 border-t border-black/10">
+      <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        {/* Brand Info */}
+        <div class="space-y-4">
+          <span class="text-xl font-bold tracking-tight text-white font-serif">
+            Muebles <span class="font-light italic text-[#cfa163]">M&O</span>
+          </span>
+          <p class="text-sm text-[#9ca3af] leading-relaxed">
+            Diseño escandinavo premium que une funcionalidad, ergonomía y materiales sostenibles para crear espacios atemporales.
+          </p>
+        </div>
+
+        {/* Links: Collections */}
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Colecciones</h4>
+          <ul class="space-y-2.5 text-sm text-[#9ca3af]">
+            <li><a href="/myo/#categorias" class="hover:text-[#cfa163] transition-colors">Salón & Sofás</a></li>
+            <li><a href="/myo/#categorias" class="hover:text-[#cfa163] transition-colors">Mesas de Comedor</a></li>
+            <li><a href="/myo/#categorias" class="hover:text-[#cfa163] transition-colors">Sillas Minimalistas</a></li>
+            <li><a href="/myo/#categorias" class="hover:text-[#cfa163] transition-colors">Iluminación de Estudio</a></li>
+          </ul>
+        </div>
+
+        {/* Links: Customer Service feature*/}
+        <div>
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-4">Ayuda & Soporte</h4>
+          <ul class="space-y-2.5 text-sm text-[#9ca3af]">
+            <li><a href="#" class="hover:text-[#cfa163] transition-colors">Preguntas Frecuentes</a></li>
+            <li><a href="#" class="hover:text-[#cfa163] transition-colors">Envíos & Devoluciones</a></li>
+            <li><a href="#" class="hover:text-[#cfa163] transition-colors">Garantía de Por Vida</a></li>
+            <li><a href="#" class="hover:text-[#cfa163] transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        {/* Newsletter Signup */}
+        <div class="space-y-4">
+          <h4 class="text-sm font-bold text-white uppercase tracking-wider mb-1">Newsletter</h4>
+          <p class="text-xs text-[#9ca3af]">Suscríbete para recibir lanzamientos y descuentos exclusivos.</p>
+          <div class="flex">
+            <input 
+              type="email" 
+              placeholder="Tu correo electrónico" 
+              class="w-full bg-[#2e3033] border-none text-white text-xs px-4 py-2.5 rounded-l-md focus:ring-1 focus:ring-[#cfa163] outline-none"
+            />
+            <button class="bg-[#cfa163] text-[#1f2022] text-xs font-bold px-4 py-2.5 rounded-r-md hover:bg-white hover:text-[#1f2022] transition-colors duration-300">
+              Unirse
+            </button>
+          </div>
+        </div>
+      </div>
+        {/*  feature*/}
+
+      <div class="max-w-7xl mx-auto px-6 border-t border-[#2e3033] pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-[#6b7280]">
+        <p>&copy; {new Date().getFullYear()} Muebles M&O. Todos los derechos reservados. Diseñado bajo filosofía escandinava.</p>
+        <div class="flex gap-6 mt-4 sm:mt-0">
+          <a href="#" class="hover:text-white">Privacidad</a>
+          <a href="#" class="hover:text-white">Términos</a>
+          <a href="#" class="hover:text-white">Cookies</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Client-Side Drawer Script -->
+    <script>
+      const btnOpen = document.getElementById('mobile-menu-btn');
+      const btnClose = document.getElementById('mobile-menu-close');
+      const drawer = document.getElementById('mobile-menu-drawer');
+      const content = document.getElementById('mobile-drawer-content');
+
+      function openDrawer() {
+        if (drawer && content) {
+          drawer.classList.remove('opacity-0', 'pointer-events-none');
+          content.classList.remove('translate-x-full');
+        }
+      }
+
+      function closeDrawer() {
+        if (drawer && content) {
+          drawer.classList.add('opacity-0', 'pointer-events-none');
+          content.classList.add('translate-x-full');
+        }
+      }
+
+      btnOpen?.addEventListener('click', openDrawer);
+      btnClose?.addEventListener('click', closeDrawer);
+      drawer?.addEventListener('click', (e) => {
+        if (e.target === drawer) {
+          closeDrawer();
+        }
+      });
+      
+      // Close drawer when clicking any link inside it
+      const links = content?.querySelectorAll('a');
+      links?.forEach(link => {
+        link.addEventListener('click', closeDrawer);
+      });
+    </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a 
+      href="https://wa.me/51907242330" 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      class="fixed bottom-6 right-6 z-50 flex items-center justify-center w-14 h-14 bg-[#25d366] hover:bg-[#20ba5a] text-white rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 group"
+      aria-label="Contactar por WhatsApp"
+    >
+      <span class="absolute inset-0 rounded-full bg-[#25d366]/40 animate-ping group-hover:animate-none -z-10"></span>
+      <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.067 2.877 1.216 3.077.149.2 2.094 3.197 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.746.953 3.71 1.458 5.704 1.459h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    </a>
+  </body>
+</html>

@@ -1,0 +1,178 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProductGallery from '../../components/ProductGallery.tsx';
+
+export function getStaticPaths() {
+  return [
+    { params: { id: 'nordic-sofa' } },
+    { params: { id: 'ottoman-set' } },
+  ];
+}
+
+const { id } = Astro.params;
+
+// Data definitions for our products with real-image color variations
+const products = {
+  'nordic-sofa': {
+    name: "Sofá Modular Nørde",
+    price: "S/ 4,299",
+    description: "El sofá modular Nørde representa la máxima expresión de la filosofía escandinava en el salón. Diseñado con líneas limpias, cojines generosos y una estructura robusta de roble macizo expuesta en las patas. Cada módulo se fabrica artesanalmente prestando especial atención a la ergonomía activa, asegurando una sentada mullida pero que mantiene la firmeza necesaria para un descanso óptimo.",
+    variations: [
+      {
+        colorName: 'Blanco Original',
+        hex: '#ffffff',
+        mainImage: '/myo/images/sofa_base.png',
+        thumbnails: [
+          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80'
+        ]
+      },
+      {
+        colorName: 'Fucsia Elegante (Fixua)',
+        hex: '#e36397',
+        mainImage: '/images/sofa_pink.png',
+        thumbnails: [
+          'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=300&q=80'
+        ]
+      }
+    ],
+    specs: [
+      { label: "Dimensiones", value: "Ancho: 240 cm | Profundidad: 100 cm | Altura: 85 cm" },
+      { label: "Estructura", value: "Madera de Pino macizo y roble certificado FSC" },
+      { label: "Relleno", value: "Espuma HR de alta densidad de 35 kg/m³ con capa de plumas" },
+      { label: "Mantenimiento", value: "Fundas totalmente desenfundables y lavables en seco" },
+      { label: "Fabricación", value: "Bajo demanda (hecho a mano en España en 4-6 semanas)" }
+    ],
+    highlights: [
+      "Diseño modular ampliable",
+      "Madera de bosques sostenibles FSC",
+      "Garantía estructural de 10 años",
+      "Envío premium a domicilio con montaje incluido"
+    ]
+  },
+  'ottoman-set': {
+    name: "Juego de Banquetes Bergen",
+    price: "S/ 3,199",
+    description: "El juego modular Bergen redefine la versatilidad en salones modernos y recepciones comerciales. Consta de dos banquetas alargadas tapizadas en capitoné, cuatro pufs auxiliares y una mesa de centro minimalista con sobre de cristal templado y un logo artístico central. Ideal para modular el espacio de forma flexible y acogedora.",
+    variations: [
+      {
+        colorName: 'Crema Original',
+        hex: '#eed5b7',
+        mainImage: '/myo/images/benches_base.png',
+        thumbnails: [
+          'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=300&q=80'
+        ]
+      },
+      {
+        colorName: 'Verde Velvet',
+        hex: '#0f5a43',
+        mainImage: '/myo/images/benches_green.png',
+        thumbnails: [
+          'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=300&q=80'
+        ]
+      }
+    ],
+    specs: [
+      { label: "Banquetas (x2)", value: "120 x 45 x 42 cm tapizado capitoné capitone" },
+      { label: "Pufs (x4)", value: "45 x 45 x 42 cm tapizado capitoné capitone" },
+      { label: "Mesa Centro", value: "100 x 60 x 45 cm con Cristal Templado de 8mm" },
+      { label: "Estructura", value: "Bastidor de roble y patas metálicas cromadas" },
+      { label: "Tapizado", value: "Terciopelo o lino de alta resistencia (Stock)" },
+      { label: "Fabricación", value: "Artesanal bajo pedido (envío en 4-5 semanas)" }
+    ],
+    highlights: [
+      "Juego completo de 7 piezas",
+      "Exclusiva mesa con sobre de cristal templado",
+      "Patas cromadas antideslizantes",
+      "Garantía estructural de 5 años"
+    ]
+  }
+};
+
+const product = products[id as keyof typeof products] || products['nordic-sofa'];
+---
+
+<Layout 
+  title={product.name} 
+  description={`Descubre el ${product.name}. Explora acabados reales en stock y especificaciones técnicas.`}
+>
+  <div class="py-12 bg-[#fafaf9]">
+    <div class="max-w-7xl mx-auto px-6">
+      
+      {/* Breadcrumb Navigation */}
+      <nav class="flex gap-2 text-xs font-semibold text-[#8b8b83] mb-8 uppercase tracking-wider">
+        <a href="/myo" class="hover:text-[#1f2022] transition-colors">Inicio</a>
+        <span>/</span>
+        <a href={`/myo/collection/${id === 'nordic-sofa' || id === 'ottoman-set' ? 'salon' : 'salon'}`} class="hover:text-[#1f2022] transition-colors">Colección</a>
+        <span>/</span>
+        <span class="text-[#1f2022] font-bold">{product.name}</span>
+      </nav>
+
+      {/* Product Detail Grid Layout */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        {/* Left Area: Product gallery with active variation controls */}
+        <div class="lg:col-span-8 space-y-8">
+          <ProductGallery 
+            client:load 
+            variations={product.variations}
+            productName={product.name}
+            price={product.price}
+          />
+        </div>
+
+        {/* Right Area: Purchase details, Specs, Highlights */}
+        <div class="lg:col-span-4 space-y-8 lg:sticky lg:top-28">
+          {/* Main Info */}
+          <div class="space-y-4">
+            <span class="text-xs font-bold text-[#cfa163] uppercase tracking-widest bg-[#f0ece3] px-3 py-1 rounded-full inline-block">
+              Diseño Exclusivo M&O
+            </span>
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-[#1f2022] leading-tight">
+              {product.name}
+            </h1>
+
+            {/* Price */}
+            <div class="text-3xl font-bold text-[#1f2022] pt-2">
+              {product.price}
+            </div>
+
+            <p class="text-sm text-[#5c5c56] leading-relaxed">
+              {product.description}
+            </p>
+          </div>
+
+          <hr class="border-[#ecece8]" />
+
+          {/* Highlights Checklist */}
+          <div class="space-y-2.5">
+            <h4 class="text-xs font-bold text-[#1f2022] uppercase tracking-wider">Características Premium</h4>
+            <ul class="grid grid-cols-1 gap-2">
+              {product.highlights.map((highlight) => (
+                <li class="flex items-center gap-2.5 text-xs text-[#5c5c56] font-medium">
+                  <svg class="w-4 h-4 text-green-700 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                  {highlight}
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* Technical Specifications List */}
+          <div class="space-y-3 pt-4 border-t border-[#ecece8]">
+            <h4 class="text-xs font-bold text-[#1f2022] uppercase tracking-wider">Ficha Técnica</h4>
+            <dl class="space-y-3">
+              {product.specs.map((spec) => (
+                <div class="text-xs grid grid-cols-1 sm:grid-cols-3 sm:gap-2">
+                  <dt class="font-bold text-[#8b8b83]">{spec.label}</dt>
+                  <dd class="text-[#1f2022] sm:col-span-2">{spec.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</Layout>
